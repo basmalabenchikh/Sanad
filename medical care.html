@@ -28,6 +28,10 @@
     --panel: #dceaff;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: "Inter", Arial, sans-serif;
     color: #17345f;
@@ -41,85 +45,79 @@ body {
     margin: auto;
 }
 
+a {
+    text-decoration: none;
+}
 
-/* ================= HEADER ================= */
+/* ================= HEADER - SAME AS HOMEPAGE ================= */
 
-.site-header {
+header {
     width: 100%;
-    height: 76px;
-    background: #ffffff;
-    border-bottom: 1px solid #e8edf5;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 1000;
 }
 
-.nav {
-    width: min(1120px, calc(100% - 64px));
+.navbar {
+    width: 100%;
     height: 76px;
-    margin: auto;
+    padding: 0 6%;
+    background-color: white;
+    color: rgb(39, 76, 156);
 
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #d8d6d6;
 }
 
 /* LOGO */
 
-.brand {
+.logo {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 5px;
 
-    color: #1557bd;
-    text-decoration: none;
-
+    color: #2058bc;
     font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -0.7px;
-
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
     white-space: nowrap;
 }
 
-.brand-mark {
-    width: 40px;
-    height: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
+.logo img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
 }
 
-.brand-mark img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
+.logo span {
+    transform: translateY(-1px);
 }
 
 /* NAVIGATION */
 
-.main-nav {
+.nav-links {
     display: flex;
     align-items: center;
-    gap: 27px;
-    margin-left: auto;
+    list-style: none;
+    gap: 25px;
 }
 
-.main-nav a {
-    color: #243e68;
-    text-decoration: none;
-
-    font-size: 12px;
+.nav-links a {
+    color: #274c9c;
+    font-size: 13px;
     font-weight: 600;
-
+    text-decoration: none;
+    transition: 0.3s;
     white-space: nowrap;
-    transition: color 0.2s ease;
 }
 
-.main-nav a:hover {
-    color: #2874c8;
+.nav-links a:hover {
+    color: #2058bc;
 }
 
 /* MOBILE MENU */
@@ -128,16 +126,15 @@ body {
     display: none;
     border: none;
     background: transparent;
-    color: #17345f;
+    color: #173568;
     font-size: 25px;
     cursor: pointer;
 }
 
-
 /* ================= HERO SECTION ================= */
 
 .hero {
-    padding-top: 62px;
+    padding-top: 138px;
     padding-bottom: 54px;
 }
 
@@ -166,6 +163,7 @@ h1 {
     gap: 9px;
     font-size: 11px;
     margin-bottom: 34px;
+    flex-wrap: wrap;
 }
 
 .quick-links a {
@@ -176,7 +174,6 @@ h1 {
 .quick-links a:hover {
     text-decoration: underline;
 }
-
 
 /* ================= SERVICE CARDS ================= */
 
@@ -190,7 +187,6 @@ h1 {
     background: white;
     border-radius: 18px;
     padding: 14px;
-
     box-shadow: 0 5px 22px rgba(26, 62, 111, 0.07);
 
     display: flex;
@@ -213,7 +209,6 @@ h1 {
 
 .card-content {
     padding: 16px 3px 3px;
-
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -244,7 +239,6 @@ h1 {
     font-weight: 600;
 }
 
-
 /* ================= BUTTONS ================= */
 
 .button {
@@ -274,7 +268,6 @@ h1 {
     background: #0d469e;
     transform: translateY(-1px);
 }
-
 
 /* ================= PROVIDER SEARCH ================= */
 
@@ -342,7 +335,6 @@ h1 {
     margin-top: 12px;
 }
 
-
 /* ================= DISCLAIMER ================= */
 
 .disclaimer {
@@ -351,7 +343,6 @@ h1 {
     margin-top: 22px;
     line-height: 1.7;
 }
-
 
 /* ================= FOOTER ================= */
 
@@ -376,8 +367,6 @@ h1 {
     font-size: 12px;
     margin-top: 12px;
 }
-
-/* Footer logo image */
 
 .footer-brand .brand-mark {
     width: 35px;
@@ -410,45 +399,39 @@ h1 {
     padding-top: 15px;
 }
 
-
 /* ================= RESPONSIVE DESIGN ================= */
 
 @media (max-width: 850px) {
 
-    .nav {
-        width: calc(100% - 36px);
+    .navbar {
+        padding: 0 5%;
     }
-
-    /* Mobile menu button */
 
     .menu-toggle {
         display: block;
         margin-left: auto;
     }
 
-    /* Navigation dropdown */
-
-    .main-nav {
+    .nav-links {
         display: none;
 
         position: absolute;
         top: 76px;
         left: 0;
-        right: 0;
-
         width: 100%;
-        padding: 22px;
 
         background: white;
-        border-top: 1px solid #edf0f5;
-        box-shadow: 0 8px 15px rgba(0,0,0,0.06);
+        padding: 22px 6%;
 
         flex-direction: column;
         align-items: flex-start;
         gap: 18px;
+
+        border-top: 1px solid #eee;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.06);
     }
 
-    .main-nav.is-open {
+    .nav-links.is-open {
         display: flex;
     }
 
@@ -465,7 +448,6 @@ h1 {
     }
 }
 
-
 @media (max-width: 620px) {
 
     .container {
@@ -473,12 +455,8 @@ h1 {
     }
 
     .hero {
-        padding-top: 38px;
+        padding-top: 112px;
         padding-bottom: 38px;
-    }
-
-    .quick-links {
-        flex-wrap: wrap;
     }
 
     .service-grid {
@@ -517,14 +495,13 @@ h1 {
     }
 }
 
-
 @media (max-width: 450px) {
 
-    .brand {
+    .logo {
         font-size: 22px;
     }
 
-    .brand-mark {
+    .logo img {
         width: 34px;
         height: 34px;
     }
@@ -545,62 +522,36 @@ h1 {
 </style>
 </head>
 
-
 <body>
-
 
 <!-- ================= HEADER ================= -->
 
-<header class="site-header">
+<header>
+    <nav class="navbar">
 
-    <div class="nav">
-
-        <!-- LOGO -->
-        <a class="brand" href="Homepage.html">
-
-            <span class="brand-mark">
-                <img
-                    src="image/photo_2026-11-19_10-02-23.jpg"
-                    alt="Sanad Logo">
-            </span>
-
+        <a href="Homepage.html" class="logo">
+            <img src="Images/Analysis_output_1-removebg-preview.png" alt="Sanad Logo">
             <span>Sanad</span>
-
         </a>
 
-
-        <!-- MOBILE MENU -->
         <button class="menu-toggle"
                 aria-label="Open navigation"
-                aria-expanded="false">
-
+                aria-expanded="false"
+                type="button">
             ☰
-
         </button>
 
+        <ul class="nav-links">
+            <li><a href="Homepage.html">Home</a></li>
+            <li><a href="#services">Medical Care</a></li>
+            <li><a href="dailycare.html">Daily Care</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Login / Sign up</a></li>
+        </ul>
 
-        <!-- NAVIGATION -->
-        <nav class="main-nav">
-
-            <a href="Homepage.html">Home</a>
-
-            <a href="#services">Medical Care</a>
-
-            <a href="#services">Daily Care</a>
-
-            <a href="#about">About Us</a>
-
-            <a href="#contact">Contact</a>
-
-            <a href="#">Login / Sign up</a>
-
-        </nav>
-
-    </div>
-
+    </nav>
 </header>
-
-
 
 <!-- ================= MAIN CONTENT ================= -->
 
@@ -608,48 +559,35 @@ h1 {
 
 <section class="hero container">
 
-
     <div class="breadcrumb">
         HOME / MEDICAL CARE
     </div>
 
-
     <h1>Expert care. Familiar surroundings.</h1>
-
 
     <p class="intro">
         Professional medical support, delivered with compassion
         in the comfort of your home.
     </p>
 
-
     <p class="quick-links">
-
         <a href="#services">Medical professionals</a>
-
         ·
-
         <a href="#services">Trusted healthcare</a>
-
         ·
-
         <a href="#provider">Care in Algeria</a>
-
     </p>
 
-
-
-    <!-- ================= SERVICES ================= -->
+    <!-- SERVICES -->
 
     <div class="service-grid" id="services">
-
 
         <!-- DOCTOR HOME VISIT -->
 
         <article class="service-card">
 
             <img
-                src="image/Doctor Home Visit photograph.png"
+                src="Images/Medical Care at home.png"
                 alt="Doctor consulting a patient">
 
             <div class="card-content">
@@ -670,17 +608,14 @@ h1 {
                 </a>
 
             </div>
-
         </article>
-
-
 
         <!-- NURSING CARE -->
 
         <article class="service-card">
 
             <img
-                src="image/Nursing Care photograph.png"
+                src="Images/Companionship photograph.png"
                 alt="Nurse providing care">
 
             <div class="card-content">
@@ -701,17 +636,14 @@ h1 {
                 </a>
 
             </div>
-
         </article>
-
-
 
         <!-- PHYSICAL THERAPY -->
 
         <article class="service-card">
 
             <img
-                src="image/Physical Therapy photograph.png"
+                src="Images/Physical Therapy photograph.png"
                 alt="Physiotherapist helping a patient">
 
             <div class="card-content">
@@ -732,15 +664,11 @@ h1 {
                 </a>
 
             </div>
-
         </article>
-
 
     </div>
 
-
-
-    <!-- ================= PROVIDER SEARCH ================= -->
+    <!-- PROVIDER SEARCH -->
 
     <section class="provider-box" id="provider">
 
@@ -751,108 +679,72 @@ h1 {
             Sample results are sorted by distance.
         </p>
 
-
         <form class="search-form">
 
-
             <label>
-
                 <span>Service</span>
 
                 <select name="service">
-
                     <option>Doctor home visit</option>
-
                     <option>Nursing care</option>
-
                     <option>Physical therapy</option>
-
                 </select>
-
             </label>
 
-
-
             <label>
-
                 <span>Wilaya / Commune</span>
 
                 <select name="location">
-
                     <option>Algiers / Hydra</option>
-
                     <option>Constantine</option>
-
                     <option>Oran</option>
-
                     <option>Khenchela</option>
-
                 </select>
-
             </label>
-
-
 
             <button class="button" type="submit">
                 Find care near me
             </button>
 
-
         </form>
-
 
         <p class="form-message" aria-live="polite"></p>
 
-
     </section>
-
-
 
     <!-- DISCLAIMER -->
 
     <p class="disclaimer">
-
         Prices are illustrative and may vary by provider,
         care requirements and location.
 
         For emergencies, please contact your local emergency
         services or go to the nearest hospital.
-
     </p>
-
 
 </section>
 
 </main>
 
-
-
 <!-- ================= FOOTER ================= -->
 
 <footer class="site-footer" id="contact">
 
-
     <div class="footer-grid container">
-
 
         <!-- FOOTER BRAND -->
 
         <div class="footer-about" id="about">
 
-            <a class="brand footer-brand" href="Homepage.html">
+            <a class="logo footer-brand" href="Homepage.html">
 
-                <span class="brand-mark">
-
-                    <img
-                        src="image/photo_2026-11-19_10-02-23.jpg"
-                        alt="Sanad Logo">
-
-                </span>
+                <img
+                    src="Images/Analysis_output_1-removebg-preview.png"
+                    alt="Sanad Logo">
 
                 <span>Sanad</span>
 
             </a>
-
 
             <p>
                 Care that feels like family.<br>
@@ -861,44 +753,27 @@ h1 {
 
         </div>
 
-
-
         <!-- CARE SERVICES -->
 
         <div>
-
             <h3>Care services</h3>
-
             <a href="#services">Medical care</a>
-
-            <a href="#services">Daily care</a>
-
-            <a href="#services">Find a provider</a>
-
+            <a href="dailycare.html">Daily care</a>
+            <a href="#provider">Find a provider</a>
         </div>
-
-
 
         <!-- SANAD -->
 
         <div>
-
             <h3>Sanad</h3>
-
             <a href="#about">About Us</a>
-
             <a href="#contact">Contact</a>
-
             <a href="#">Help center</a>
-
         </div>
-
-
 
         <!-- CONTACT -->
 
         <div>
-
             <h3>Get in touch</h3>
 
             <a href="mailto:hello@sanad.dz">
@@ -910,63 +785,51 @@ h1 {
             </a>
 
             <span>Algiers, Algeria</span>
-
         </div>
 
-
     </div>
-
-
 
     <!-- COPYRIGHT -->
 
     <div class="copyright container">
-
         © 2026 Sanad · Care at home |
         Privacy policy · Terms of service
-
     </div>
 
-
 </footer>
-
-
 
 <!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
-
 /* MOBILE NAVIGATION */
 
 const menuButton = document.querySelector(".menu-toggle");
-
-const nav = document.querySelector(".main-nav");
-
+const nav = document.querySelector(".nav-links");
 
 menuButton.addEventListener("click", () => {
 
     const isOpen = nav.classList.toggle("is-open");
 
     menuButton.setAttribute("aria-expanded", isOpen);
+    menuButton.textContent = isOpen ? "✕" : "☰";
 
 });
 
-
 /* CLOSE MENU AFTER CLICK */
 
-document.querySelectorAll(".main-nav a").forEach(link => {
+document.querySelectorAll(".nav-links a").forEach(link => {
 
     link.addEventListener("click", () => {
 
         nav.classList.remove("is-open");
 
         menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "☰";
 
     });
 
 });
-
 
 /* PROVIDER SEARCH */
 
@@ -975,18 +838,14 @@ document.querySelector(".search-form").addEventListener("submit", (event) => {
     event.preventDefault();
 
     const service = event.currentTarget.elements.service.value;
-
     const location = event.currentTarget.elements.location.value;
 
     document.querySelector(".form-message").textContent =
-
         `Searching for ${service.toLowerCase()} in ${location}...`;
 
 });
 
-
 </script>
-
 
 </body>
 </html>

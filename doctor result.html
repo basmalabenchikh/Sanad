@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sanad | Doctor Results</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= GENERAL ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #102d5c;
+    --blue: #1554c9;
+    --muted: #7185a5;
+    --background: #f3f6fc;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background: white;
+    color: var(--navy);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    width: calc(100% - 64px);
+    margin: auto;
+}
+
+
+/* ================= HEADER - SAME AS HOMEPAGE ================= */
+
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header {
+    width: 100%;
+    height: 76px;
+    padding: 0 6%;
+    background: white;
+    color: rgb(39, 76, 156);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #d8d6d6;
+}
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    color: #2058bc;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    display: block;
+}
+
+.logo span {
+    transform: translateY(-1px);
+}
+
+/* NAVIGATION */
+
+.header nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.header nav a {
+    color: #274c9c;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.header nav a:hover {
+    color: #2058bc;
+}
+
+/* MOBILE MENU */
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    color: #173568;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* RESPONSIVE HEADER */
+
+@media (max-width: 850px) {
+
+    .header {
+        padding: 0 5%;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    .header nav {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+
+        background: white;
+        padding: 22px 6%;
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+
+        border-top: 1px solid #eee;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.06);
+    }
+
+    .header nav.is-open {
+        display: flex;
+    }
+}
+
+
+/* ================= MAIN ================= */
+
+.main {
+    background: var(--background);
+    min-height: 650px;
+    padding: 115px 0 65px;
+}
+
+.breadcrumb {
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+h1 {
+    color: var(--navy);
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+
+/* ================= SEARCH PANEL ================= */
+
+.search-panel {
+    background: #dceaff;
+    border-radius: 13px;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr auto;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.search-field {
+    background: white;
+    border-radius: 8px;
+    padding: 10px 13px;
+    min-height: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.search-field label {
+    color: var(--muted);
+    font-size: 10px;
+    margin-bottom: 3px;
+}
+
+.search-field select {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--navy);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.update-btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 13px 28px;
+    min-width: 135px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.update-btn:hover {
+    background: #103e99;
+    transform: translateY(-1px);
+}
+
+
+/* ================= RESULTS INFORMATION ================= */
+
+.results-info {
+    font-size: 12px;
+    color: var(--navy);
+    font-weight: 500;
+    margin: 0 0 18px;
+}
+
+.results-info span {
+    color: var(--blue);
+    font-weight: 700;
+}
+
+
+/* ================= DOCTOR CARDS ================= */
+
+.doctor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.doctor-card {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 145px 1fr 220px;
+    align-items: center;
+    gap: 20px;
+    transition: 0.25s;
+}
+
+.doctor-card:hover {
+    box-shadow: 0 8px 25px rgba(30, 68, 125, 0.07);
+    transform: translateY(-2px);
+}
+
+/* DOCTOR IMAGE */
+
+.doctor-image {
+    width: 100%;
+    height: 125px;
+    border-radius: 11px;
+    object-fit: cover;
+    background: #dceaff;
+}
+
+/* DOCTOR INFORMATION */
+
+.verified {
+    display: block;
+    color: var(--blue);
+    font-size: 9px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.doctor-info h2 {
+    font-size: 19px;
+    color: var(--navy);
+    margin-bottom: 3px;
+    font-weight: 800;
+}
+
+.specialty {
+    color: var(--blue);
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.education {
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 3px;
+}
+
+.experience {
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.distance {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+
+/* ================= PRICE AND BUTTON ================= */
+
+.doctor-price {
+    align-self: center;
+    padding-left: 5px;
+}
+
+.price {
+    color: var(--blue);
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 3px;
+}
+
+.price-label {
+    color: var(--muted);
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 20px;
+    width: 145px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.profile-btn:hover {
+    background: #103e99;
+}
+
+
+/* ================= DISCLAIMER ================= */
+
+.disclaimer {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 20px;
+    line-height: 1.7;
+}
+
+
+/* ================= NO RESULTS ================= */
+
+.no-results {
+    display: none;
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* ================= FOOTER - SAME AS HOMEPAGE ================= */
+
+.footer {
+    background: #102e5c;
+    color: white;
+    padding: 45px 6% 25px;
+}
+
+.footer-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-brand h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.footer-brand h2 span {
+    font-size: 27px;
+}
+
+.footer-brand p {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #e1e9f7;
+}
+
+.footer-column h3 {
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.footer-column a {
+    display: block;
+    color: #d3def0;
+    text-decoration: none;
+    font-size: 11px;
+    margin-bottom: 14px;
+}
+
+.footer-column a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    max-width: 1100px;
+    margin: 35px auto 0;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.footer-bottom p {
+    font-size: 10px;
+    color: #c2d0e6;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 850px) {
+
+    .container {
+        width: min(100% - 40px, 680px);
+    }
+
+    .main {
+        padding: 105px 0 45px;
+    }
+
+    .search-panel {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .update-btn {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .doctor-card {
+        grid-template-columns: 120px 1fr;
+        gap: 15px;
+    }
+
+    .doctor-image {
+        height: 125px;
+    }
+
+    .doctor-price {
+        grid-column: 2;
+        padding-left: 0;
+    }
+
+    .footer-grid {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 620px) {
+
+    .container {
+        width: calc(100% - 36px);
+    }
+
+    .main {
+        padding: 95px 0 38px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .search-panel {
+        grid-template-columns: 1fr;
+        padding: 14px;
+    }
+
+    .update-btn {
+        grid-column: auto;
+    }
+
+    .doctor-card {
+        grid-template-columns: 95px 1fr;
+        padding: 13px;
+        gap: 12px;
+    }
+
+    .doctor-image {
+        height: 110px;
+    }
+
+    .doctor-info h2 {
+        font-size: 15px;
+    }
+
+    .doctor-info .education {
+        font-size: 10px;
+    }
+
+    .doctor-price {
+        grid-column: 1 / -1;
+        border-top: 1px solid #edf0f5;
+        padding-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .price {
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+
+    .price-label {
+        margin-bottom: 0;
+    }
+
+    .profile-btn {
+        width: 130px;
+    }
+
+    .footer {
+        padding: 35px 20px;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 20px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .logo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .doctor-card {
+        grid-template-columns: 80px 1fr;
+    }
+
+    .doctor-image {
+        height: 95px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <a href="Homepage.html" class="logo">
+
+        <img
+            src="Images/Analysis_output_1-removebg-preview.png"
+            alt="Sanad Logo">
+
+        <span>Sanad</span>
+
+    </a>
+
+    <button class="menu-toggle"
+            aria-label="Open navigation"
+            aria-expanded="false">
+
+        ☰
+
+    </button>
+
+    <nav>
+
+        <a href="Homepage.html">Home</a>
+
+        <a href="MedicalCare.html">Medical Care</a>
+
+        <a href="dailycare.html">Daily Care</a>
+
+        <a href="Homepage.html#about">About Us</a>
+
+        <a href="Homepage.html#contact">Contact</a>
+
+        <a href="#">Login / Sign Up</a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="main">
+
+<div class="container">
+
+
+    <!-- PAGE TITLE -->
+
+    <div class="breadcrumb">
+        FIND CARE / CHOOSE YOUR PROVIDER
+    </div>
+
+    <h1>Care nearby. People you can trust.</h1>
+
+    <p class="subtitle">
+        Hydra, Algiers
+    </p>
+
+
+
+    <!-- SEARCH PANEL -->
+
+    <section class="search-panel">
+
+        <div class="search-field">
+
+            <label for="service">Service</label>
+
+            <select id="service">
+
+                <option value="Doctor Home Visit">
+                    Doctor Home Visit
+                </option>
+
+                <option value="Nursing Care">
+                    Nursing Care
+                </option>
+
+                <option value="Physical Therapy">
+                    Physical Therapy
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="search-field">
+
+            <label for="location">Location</label>
+
+            <select id="location">
+
+                <option value="Hydra, Algiers">
+                    Hydra, Algiers
+                </option>
+
+                <option value="El Biar, Algiers">
+                    El Biar, Algiers
+                </option>
+
+                <option value="Bab El Oued, Algiers">
+                    Bab El Oued, Algiers
+                </option>
+
+                <option value="Constantine">
+                    Constantine
+                </option>
+
+                <option value="Oran">
+                    Oran
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button class="update-btn" id="updateSearch">
+            Update search
+        </button>
+
+    </section>
+
+
+
+    <!-- RESULTS INFORMATION -->
+
+    <p class="results-info" id="resultsInfo">
+        <span>2 nearby doctors</span>
+        &nbsp; • &nbsp;
+        All prices fixed for the selected service
+    </p>
+
+
+
+    <!-- DOCTOR RESULTS -->
+
+    <section class="doctor-list" id="doctorList">
+
+
+        <!-- DOCTOR 1 -->
+
+        <article class="doctor-card">
+
+            <img
+                src="Images/Dr. Amine Benali portrait.png"
+                alt="Dr. Amine Benali"
+                class="doctor-image">
+
+            <div class="doctor-info">
+
+                <span class="verified">
+                    ✓ QUALIFICATIONS REVIEWED
+                </span>
+
+                <h2>Dr. Amine Benali</h2>
+
+                <p class="specialty">
+                    General Doctor
+                </p>
+
+                <p class="education">
+                    Doctor of Medicine - University of Algiers
+                </p>
+
+                <p class="experience">
+                    12 years experience &nbsp; • &nbsp; ★ 4.9 (128 reviews)
+                </p>
+
+                <p class="distance">
+                    1.2 km away
+                </p>
+
+            </div>
+
+
+            <div class="doctor-price">
+
+                <div>
+                    <p class="price">4,000 DZD</p>
+
+                    <p class="price-label">
+                        Fixed visit price
+                    </p>
+                </div>
+
+                <button class="profile-btn"
+                        data-doctor="Dr. Amine Benali">
+                    View Profile
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- DOCTOR 2 -->
+
+        <article class="doctor-card">
+
+            <img
+                src="Images/Yacine Haddad portrait.png"
+                alt="Dr. Samir Kaci"
+                class="doctor-image">
+
+            <div class="doctor-info">
+
+                <span class="verified">
+                    ✓ QUALIFICATIONS REVIEWED
+                </span>
+
+                <h2>Dr. Samir Kaci</h2>
+
+                <p class="specialty">
+                    General Doctor
+                </p>
+
+                <p class="education">
+                    Doctor of Medicine - University of Algiers
+                </p>
+
+                <p class="experience">
+                    12 years experience &nbsp; • &nbsp; ★ 4.8 (46 reviews)
+                </p>
+
+                <p class="distance">
+                    3.2 km away
+                </p>
+
+            </div>
+
+
+            <div class="doctor-price">
+
+                <div>
+                    <p class="price">4,000 DZD</p>
+
+                    <p class="price-label">
+                        Fixed visit price
+                    </p>
+                </div>
+
+                <button class="profile-btn"
+                        data-doctor="Dr. Samir Kaci">
+                    View Profile
+                </button>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- NO RESULTS MESSAGE -->
+
+    <div class="no-results" id="noResults">
+        No doctors found for this search.
+        Please try another location or service.
+    </div>
+
+
+    <!-- DISCLAIMER -->
+
+    <p class="disclaimer">
+        Distances and availability are simulated.
+        Search fields use preset demonstration locations in this connected prototype.
+    </p>
+
+
+</div>
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+            <h2><span>+</span> Sanad</h2>
+
+            <p>
+                Care that feels like family.<br>
+                Professional home care, closer to you.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Care services</h3>
+
+            <a href="MedicalCare.html">Medical Care</a>
+
+            <a href="dailycare.html">Daily Care</a>
+
+            <a href="#">Find a provider</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Sanad</h3>
+
+            <a href="Homepage.html#about">About Us</a>
+
+            <a href="Homepage.html#contact">Contact</a>
+
+            <a href="#">My account</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Get in touch</h3>
+
+            <a href="mailto:hello@sanad.example">
+                hello@sanad.example
+            </a>
+
+            <a href="tel:+213210000000">
+                +213 (0) 21 00 00 00
+            </a>
+
+            <a href="#">
+                Algiers, Algeria
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Sanad - Care at Home
+            &nbsp; • &nbsp;
+            Demonstration only - Contact details and prices are illustrative.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/* ================= MOBILE MENU ================= */
+
+const menuButton = document.querySelector(".menu-toggle");
+const navigation = document.querySelector(".header nav");
+
+menuButton.addEventListener("click", () => {
+
+    const isOpen = navigation.classList.toggle("is-open");
+
+    menuButton.setAttribute("aria-expanded", isOpen);
+
+    menuButton.textContent = isOpen ? "✕" : "☰";
+
+});
+
+
+/* CLOSE MENU AFTER CLICK */
+
+navigation.querySelectorAll("a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navigation.classList.remove("is-open");
+
+        menuButton.setAttribute("aria-expanded", "false");
+
+        menuButton.textContent = "☰";
+
+    });
+
+});
+
+
+/* ================= UPDATE SEARCH ================= */
+
+const updateButton = document.getElementById("updateSearch");
+
+const serviceSelect = document.getElementById("service");
+
+const locationSelect = document.getElementById("location");
+
+const resultsInfo = document.getElementById("resultsInfo");
+
+const doctorList = document.getElementById("doctorList");
+
+const noResults = document.getElementById("noResults");
+
+
+updateButton.addEventListener("click", () => {
+
+    const service = serviceSelect.value;
+
+    const location = locationSelect.value;
+
+    resultsInfo.innerHTML =
+        "<span>2 nearby doctors</span> &nbsp; • &nbsp; " +
+        "All prices fixed for " + service;
+
+    document.querySelector(".subtitle").textContent = location;
+
+    doctorList.style.display = "flex";
+
+    noResults.style.display = "none";
+
+});
+
+
+/* ================= VIEW PROFILE ================= */
+
+document.querySelectorAll(".profile-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const doctorName = button.dataset.doctor;
+
+        alert("You selected " + doctorName +
+              ". Doctor profile page coming soon.");
+
+    });
+
+});
+
+</script>
+
+
+</body>
+</html>
+

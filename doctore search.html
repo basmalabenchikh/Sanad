@@ -9,7 +9,7 @@
 <title>Sanad | Doctor Home Visit</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -42,21 +42,28 @@ body {
 }
 
 
-/* ================= HEADER ================= */
+/* ================= HEADER - SAME AS HOMEPAGE ================= */
+
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
 
 .header {
     width: 100%;
     height: 76px;
-    background: #ffffff;
-    border-bottom: 1px solid #e8edf5;
-    position: relative;
-    z-index: 1000;
+    padding: 0 6%;
+    background: white;
+    color: rgb(39, 76, 156);
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding: 0 max(32px, calc((100% - 1120px) / 2));
+    border-bottom: 1px solid #d8d6d6;
 }
 
 /* LOGO */
@@ -64,22 +71,26 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 5px;
 
-    color: #1557bd;
+    color: #2058bc;
     font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -0.7px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
 
     text-decoration: none;
     white-space: nowrap;
 }
 
 .logo img {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
     display: block;
+}
+
+.logo span {
+    transform: translateY(-1px);
 }
 
 /* NAVIGATION */
@@ -87,20 +98,20 @@ body {
 .header nav {
     display: flex;
     align-items: center;
-    gap: 27px;
+    gap: 25px;
 }
 
 .header nav a {
-    text-decoration: none;
-    color: #243e68;
-    font-size: 12px;
+    color: #274c9c;
+    font-size: 13px;
     font-weight: 600;
+    text-decoration: none;
     white-space: nowrap;
-    transition: color 0.2s ease;
+    transition: 0.3s;
 }
 
 .header nav a:hover {
-    color: #1557bd;
+    color: #2058bc;
 }
 
 /* MOBILE MENU */
@@ -109,18 +120,17 @@ body {
     display: none;
     border: none;
     background: transparent;
-    color: #17345f;
+    color: #173568;
     font-size: 25px;
     cursor: pointer;
 }
 
-/* HEADER RESPONSIVE */
+/* RESPONSIVE HEADER */
 
 @media (max-width: 850px) {
 
     .header {
-        height: 76px;
-        padding: 0 20px;
+        padding: 0 5%;
     }
 
     .menu-toggle {
@@ -136,31 +146,19 @@ body {
         left: 0;
         width: 100%;
 
-        padding: 22px;
         background: white;
-
-        border-top: 1px solid #edf0f5;
-        box-shadow: 0 8px 15px rgba(0,0,0,0.06);
+        padding: 22px 6%;
 
         flex-direction: column;
         align-items: flex-start;
         gap: 18px;
+
+        border-top: 1px solid #eee;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.06);
     }
 
     .header nav.is-open {
         display: flex;
-    }
-}
-
-@media (max-width: 450px) {
-
-    .logo {
-        font-size: 22px;
-    }
-
-    .logo img {
-        width: 35px;
-        height: 35px;
     }
 }
 
@@ -169,7 +167,7 @@ body {
 
 .main {
     background: var(--background);
-    padding: 75px 60px 65px;
+    padding: 95px 60px 65px;
     min-height: 650px;
 }
 
@@ -241,6 +239,11 @@ h1 {
 
 .specialty:hover {
     border-color: var(--blue);
+    background: #f5f8ff;
+}
+
+.specialty.selected {
+    border: 1px solid var(--blue);
     background: #f5f8ff;
 }
 
@@ -395,7 +398,7 @@ h1 {
     }
 
     .main {
-        padding: 45px 20px;
+        padding: 85px 20px 45px;
     }
 
     .steps {
@@ -427,7 +430,7 @@ h1 {
     }
 
     .main {
-        padding: 38px 18px;
+        padding: 80px 18px 38px;
     }
 
     h1 {
@@ -458,6 +461,15 @@ h1 {
 
 @media (max-width: 450px) {
 
+    .logo {
+        font-size: 22px;
+    }
+
+    .logo img {
+        width: 40px;
+        height: 40px;
+    }
+
     .footer-grid {
         grid-template-columns: 1fr;
     }
@@ -481,7 +493,7 @@ h1 {
     <a href="Homepage.html" class="logo">
 
         <img
-            src="image/photo_2026-11-19_10-02-23.jpg"
+            src="Images/Analysis_output_1-removebg-preview.png"
             alt="Sanad Logo">
 
         <span>Sanad</span>
@@ -502,15 +514,15 @@ h1 {
 
         <a href="Homepage.html">Home</a>
 
-        <a href="#">Medical Care⌄</a>
+        <a href="MedicalCare.html">Medical Care</a>
 
-        <a href="#">Daily Care⌄</a>
+        <a href="dailycare.html">Daily Care</a>
 
-        <a href="#">About Us</a>
+        <a href="#about">About Us</a>
 
-        <a href="#">Contact</a>
+        <a href="#contact">Contact</a>
 
-        <a href="#">Login / Sign Up</a>
+        <a href="#">Login / Sign up</a>
 
     </nav>
 
@@ -658,7 +670,7 @@ h1 {
 
 <!-- ================= FOOTER ================= -->
 
-<footer class="footer">
+<footer class="footer" id="contact">
 
     <div class="footer-grid">
 
@@ -680,9 +692,9 @@ h1 {
 
             <h3>Care services</h3>
 
-            <a href="#">Medical Care</a>
+            <a href="MedicalCare.html">Medical Care</a>
 
-            <a href="#">Daily Care</a>
+            <a href="dailycare.html">Daily Care</a>
 
             <a href="#">Find a provider</a>
 
@@ -694,9 +706,9 @@ h1 {
 
             <h3>Sanad</h3>
 
-            <a href="#">About Us</a>
+            <a href="#about">About Us</a>
 
-            <a href="#">Contact</a>
+            <a href="#contact">Contact</a>
 
             <a href="#">My account</a>
 
@@ -744,18 +756,17 @@ h1 {
 
 <script>
 
-/* MOBILE MENU */
+/* ================= MOBILE MENU ================= */
 
 const menuButton = document.querySelector(".menu-toggle");
-
 const navigation = document.querySelector(".header nav");
-
 
 menuButton.addEventListener("click", () => {
 
     const isOpen = navigation.classList.toggle("is-open");
 
     menuButton.setAttribute("aria-expanded", isOpen);
+    menuButton.textContent = isOpen ? "✕" : "☰";
 
 });
 
@@ -769,13 +780,14 @@ navigation.querySelectorAll("a").forEach(link => {
         navigation.classList.remove("is-open");
 
         menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "☰";
 
     });
 
 });
 
 
-/* LOCATION LINKS */
+/* ================= LOCATION LINKS ================= */
 
 const locationLinks = document.querySelectorAll(".location-links a");
 
@@ -790,14 +802,15 @@ locationLinks.forEach(link => {
             .replace(" →", "");
 
         document.querySelector(".description").textContent =
-            "Selected location: " + address + ". Search to see nearby sample doctors.";
+            "Selected location: " + address +
+            ". Search to see nearby sample doctors.";
 
     });
 
 });
 
 
-/* SEARCH BUTTON */
+/* ================= SEARCH BUTTON ================= */
 
 document.querySelector(".search-btn").addEventListener("click", () => {
 
@@ -818,7 +831,7 @@ document.querySelector(".search-btn").addEventListener("click", () => {
 });
 
 
-/* SPECIALTY SELECTION */
+/* ================= SPECIALTY SELECTION ================= */
 
 document.querySelectorAll(".specialty").forEach(card => {
 
@@ -828,15 +841,9 @@ document.querySelectorAll(".specialty").forEach(card => {
 
             item.classList.remove("selected");
 
-            item.style.borderColor = "#e1e8f2";
-            item.style.background = "white";
-
         });
 
         card.classList.add("selected");
-
-        card.style.borderColor = "#1554c9";
-        card.style.background = "#f5f8ff";
 
     });
 
