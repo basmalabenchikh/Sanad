@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanad - Booking Request</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f8ff;
+            color: #173665;
+        }
+
+        /* NAVBAR */
+        a{
+            text-decoration: none;
+            color: inherit;
+        }
+        .navbar {
+            height: 76px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #2058bc;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .logo span {
+            transform: translateY(-1px);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* MAIN */
+
+        .main-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .breadcrumb {
+            color: #1455c0;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .page-title {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #7185a5;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        /* TWO COLUMNS */
+
+        .booking-layout {
+            display: grid;
+            grid-template-columns: 2fr 1.08fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        /* BOOKING FORM */
+
+        .booking-form {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 17px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .field {
+            border: 1px solid #dce6f4;
+            border-radius: 9px;
+            padding: 12px;
+            min-height: 65px;
+        }
+
+        .field label {
+            display: block;
+            color: #7185a5;
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #173665;
+            font-family: inherit;
+            font-size: 13px;
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 25px;
+        }
+
+        .full-width {
+            margin-bottom: 17px;
+        }
+
+        .service-name {
+            font-size: 13px;
+            margin: 0 0 16px;
+        }
+
+        /* TIME BUTTONS */
+
+        .time-options {
+            display: flex;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .time-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 9px;
+            background: #1455c0;
+            color: white;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .time-btn:hover,
+        .time-btn.active {
+            background: #0d3479;
+        }
+
+        /* PAYMENT */
+
+        .payment-option {
+            border: 1px solid #dce6f4;
+            border-radius: 9px;
+            padding: 14px;
+            margin-bottom: 16px;
+            font-size: 12px;
+        }
+
+        .payment-option label {
+            display: block;
+            font-size: 10px;
+            color: #7185a5;
+            margin-bottom: 6px;
+        }
+
+        .payment-option input {
+            accent-color: #1455c0;
+        }
+
+        .payment-text {
+            font-size: 12px;
+            font-weight: 600;
+            margin: 18px 0;
+        }
+
+        .note {
+            font-size: 11px;
+            color: #7185a5;
+            margin-bottom: 18px;
+        }
+
+        .agreement {
+            font-size: 11px;
+            font-weight: 500;
+            margin-bottom: 17px;
+        }
+
+        .submit-btn,
+        .back-btn {
+            background: #1455c0;
+            color: white;
+            border: none;
+            padding: 12px 17px;
+            border-radius: 9px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover,
+        .back-btn:hover {
+            background: #0d3479;
+        }
+
+        .incomplete-link {
+            display: block;
+            margin-top: 17px;
+            color: #1455c0;
+            font-size: 11px;
+            text-decoration: none;
+        }
+
+        /* SUMMARY CARD */
+
+        .summary-card {
+            background: #dceaff;
+            padding: 25px;
+            border-radius: 18px;
+        }
+
+        .summary-card h2 {
+            font-size: 19px;
+            margin-bottom: 18px;
+        }
+
+        .summary-label {
+            color: #1455c0;
+            font-size: 9px;
+            font-weight: 700;
+            margin: 17px 0 12px;
+        }
+
+        .summary-value {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 600;
+            margin: 18px 0;
+        }
+
+        .summary-note {
+            color: #7185a5;
+            font-size: 11px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* PROTOTYPE NOTE */
+
+        .prototype-note {
+            color: #7185a5;
+            font-size: 11px;
+            margin-top: 28px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #102f60;
+            color: white;
+            padding: 45px 5%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        .footer-logo {
+            font-size: 23px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        footer h3 {
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer a {
+            display: block;
+            color: #dce6f4;
+            font-size: 11px;
+            line-height: 2.2;
+            text-decoration: none;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 10px;
+            color: #b9cbe6;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+            .booking-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                height: auto;
+                padding: 15px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .main-container {
+                padding: 35px 15px;
+            }
+
+            .page-title {
+                font-size: 23px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .time-options {
+                flex-wrap: wrap;
+            }
+
+            .time-btn {
+                min-width: 28%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">
+                <img src="Images/Analysis_output_1-removebg-preview.png">
+                <span>Sanad</span>
+            </h2>
+
+           <ul class="nav-links">
+                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="medical care.html">Medical Care</a></li>
+                <li><a href="dailycare.html">Daily Care</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Login / Sign up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-container">
+
+        <p class="breadcrumb">REQUEST A VISIT / COMPANIONSHIP</p>
+
+        <h1 class="page-title">A few details. Better care.</h1>
+
+        <p class="subtitle">
+            Your request is sent to the provider. The appointment is confirmed only after approval.
+        </p>
+
+
+        <div class="booking-layout">
+
+            <!-- LEFT: BOOKING FORM -->
+            <form class="booking-form" id="bookingForm">
+
+                <h2 class="section-title">1. Patient information</h2>
+
+                <div class="form-row">
+
+                    <div class="field">
+                        <label>Patient full name *</label>
+                        <input type="text" placeholder="enter your name" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Phone number *</label>
+                        <input type="tel" placeholder="enter your code" required>
+                    </div>
+
+                </div>
+
+                <div class="field full-width">
+                    <label>Home address *</label>
+                    <input type="text" value="18 Rue des Oliviers, Hydra, Algiers" required>
+                </div>
+
+
+                <h2 class="section-title">2. Appointment details</h2>
+
+                <p class="service-name">Doctor Home Visit</p>
+
+                <div class="form-row">
+
+                    <div class="field">
+                        <label>Appointment date *</label>
+                        <input type="date" value="2026-11-24" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Preferred time *</label>
+                        <input type="text" id="selectedTime" value="09:00 – 10:00" readonly required>
+                    </div>
+
+                </div>
+
+
+                <div class="time-options">
+
+                    <button type="button" class="time-btn active" onclick="selectTime('09:00', this)">
+                        09:00
+                    </button>
+
+                    <button type="button" class="time-btn" onclick="selectTime('14:00', this)">
+                        14:00
+                    </button>
+
+                    <button type="button" class="time-btn" onclick="selectTime('10:00', this)">
+                        10:00
+                    </button>
+
+                </div>
+
+
+                <div class="field full-width">
+                    <label>Additional information</label>
+                    <textarea rows="2">Please ring the doorbell. The patient has limited mobility.</textarea>
+                </div>
+
+
+                <h2 class="section-title">3. Payment method</h2>
+
+                <div class="payment-option">
+                    <label>Payment option</label>
+                    <input type="radio" name="payment" value="cash" checked>
+                    Cash after the home service
+                </div>
+
+                <div class="payment-option">
+                    <label>Payment option</label>
+                    <input type="radio" name="payment" value="online">
+                    Online Payment · simulation only
+                </div>
+
+                <p class="payment-text" id="paymentText">
+                    Cash after the home service
+                </p>
+
+                <p class="note">
+                    Online payment is a demonstration. No gateway is connected
+                    and no real money is charged.
+                </p>
+
+                <p class="agreement">
+                    <input type="checkbox" required>
+                    I agree to share these details with the selected care provider.
+                </p>
+
+                <button type="submit" class="submit-btn">
+                    Submit booking request
+                </button>
+
+                <a href="#" class="incomplete-link">
+                    Try an incomplete form →
+                </a>
+
+            </form>
+
+
+            <!-- RIGHT: SUMMARY -->
+            <aside class="summary-card">
+
+                <h2>Your home visit</h2>
+
+                <p class="summary-label">SERVICE</p>
+                <p class="summary-value">Doctor Home Visit</p>
+
+                <p class="summary-label">PROVIDER</p>
+                <p class="summary-value">Dr. Amine Bendali</p>
+
+                <p class="summary-label">APPOINTMENT</p>
+                <p class="summary-value">
+                    24 November 2026 · 09:00
+                </p>
+
+                <p class="summary-label">TOTAL FIXED PRICE</p>
+                <p class="price">4,000 DZD</p>
+
+                <p class="summary-note">
+                    Sample price · Pay according to your chosen method.
+                    Provider approval is required.
+                </p>
+
+                <button class="back-btn" type="button" onclick="history.back()">
+                    ← Back to provider
+                </button>
+
+            </aside>
+
+        </div>
+
+
+        <p class="prototype-note">
+            This is a connected design prototype. Fields show preset sample information;
+            typing and live validation require frontend implementation.
+        </p>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+                <div class="footer-logo">✚ Sanad</div>
+                <p>Care that feels like family.</p>
+                <p>Professional home care, closer to you.</p>
+            </div>
+
+            <div>
+                <h3>Care services</h3>
+                <a href="#">Medical Care</a>
+                <a href="#">Daily Care</a>
+                <a href="#">Find a provider</a>
+            </div>
+
+            <div>
+                <h3>Sanad</h3>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">My account</a>
+            </div>
+
+            <div>
+                <h3>Get in touch</h3>
+                <p>hello@sanad.example</p>
+                <p>+213 (0) 21 00 00 00</p>
+                <p>Algiers, Algeria</p>
+            </div>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 Sanad – Care at Home · Demonstration only · Contact details and prices are illustrative.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // Select appointment time
+        function selectTime(time, button) {
+
+            document.getElementById("selectedTime").value =
+                time + " – " + (Number(time.split(":")[0]) + 1) + ":00";
+
+            document.querySelectorAll(".time-btn").forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+        }
+
+
+        // Change payment text
+        document.querySelectorAll('input[name="payment"]').forEach(option => {
+
+            option.addEventListener("change", function () {
+
+                if (this.value === "cash") {
+                    document.getElementById("paymentText").textContent =
+                        "Cash after the home service";
+                } else {
+                    document.getElementById("paymentText").textContent =
+                        "Online Payment · Simulation only";
+                }
+
+            });
+
+        });
+
+
+        // Submit booking form
+        document.getElementById("bookingForm").addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            alert("Your booking request has been submitted successfully!");
+
+        });
+
+    </script>
+
+</body>
+
+</html>

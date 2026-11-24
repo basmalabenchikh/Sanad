@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanad | Find a Provider</title>
+    <title>Sanad</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
 <body>
 
     <!-- NAVBAR -->
-     <header>
+    <header>
         <nav class="navbar">
             <h2 class="logo">
                 <img src="Images/Analysis_output_1-removebg-preview.png">
@@ -25,8 +25,8 @@
 
             <ul class="nav-links">
                 <li><a href="Homepage.html">Home</a></li>
-                <li><a href="#">Medical Care</a></li>
-                <li><a href="#">Daily Care</a></li>
+                <li><a href="medical care.html">Medical Care</a></li>
+                <li><a href="dailycare.html">Daily Care</a></li>
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Login / Sign up</a></li>
@@ -47,8 +47,7 @@
             <h1>Care nearby. People you can trust.</h1>
 
             <p>
-                Sample daily-care providers in Hydra, Algiers ·
-                Sorted by distance
+                Sample daily-care providers 
             </p>
 
         </section>
@@ -57,26 +56,25 @@
         <!-- SEARCH FILTERS -->
         <section class="search-box">
 
-            <form class="search-form">
+            <form class="search-form" id="search-form">
 
                 <div class="input-group">
-                    <label for="service">Service</label>
+                    <label for="wilaya">Wilaya</label>
 
-                    <select id="service">
-                        <option>Companionship</option>
-                        <option>Meal Preparation</option>
+                    <select id="wilaya" name="wilaya" required>
+                        <option value="">Choose your wilaya</option>
+                        <option value="Algiers">Algiers</option>
+                        <option value="Oran">Oran</option>
+                        <option value="Constantine">Constantine</option>
+                        <option value="Annaba">Annaba</option>
                     </select>
                 </div>
 
-
                 <div class="input-group">
-                    <label for="location">Location</label>
+                    <label for="commune">Commune</label>
 
-                    <select id="location">
-                        <option>Hydra, Algiers</option>
-                        <option>Bab El Oued, Algiers</option>
-                        <option>Bir El Djir, Oran</option>
-                        <option>Constantine</option>
+                    <select id="commune" name="commune" disabled required>
+                        <option value="">Choose your commune</option>
                     </select>
                 </div>
 
@@ -103,8 +101,7 @@
 
             <article class="provider-card">
 
-                <img
-                    class="provider-image"
+                <img class="provider-image"
                     src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=85"
                     alt="Sarah Amrani">
 
@@ -150,8 +147,7 @@
             <!-- PROVIDER 2 -->
             <article class="provider-card">
 
-                <img
-                    class="provider-image"
+                <img class="provider-image"
                     src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=400&q=85"
                     alt="Leila Hamidi">
 
@@ -206,7 +202,7 @@
 
 
     <!-- FOOTER -->
-     <footer>
+    <footer>
         <div class="footer-container">
 
             <div class="footer-about">
@@ -247,4 +243,106 @@
 
 
 </body>
+<script>
+
+    const communes = {
+
+        "Algiers": [
+            "Hydra",
+            "Bab El Oued",
+            "El Madania",
+            "Bir Mourad Raïs",
+            "Kouba",
+            "Bouzareah",
+            "Ben Aknoun"
+        ],
+
+        "Oran": [
+            "Oran",
+            "Bir El Djir",
+            "Es Senia",
+            "Arzew",
+            "Aïn El Turk",
+            "Gdyel"
+        ],
+
+        "Constantine": [
+            "Ali Mendjeli",
+            "Hamma",
+            "Didouche Mourad"
+        ],
+
+        "Annaba": [
+            "El Bouni",
+            "Seraïdi",
+            "Berrahal"
+        ]
+    };
+
+
+    // Get HTML elements
+    const wilayaSelect = document.getElementById("wilaya");
+    const communeSelect = document.getElementById("commune");
+
+
+    // When Wilaya changes
+    wilayaSelect.addEventListener("change", function () {
+
+        const selectedWilaya = this.value;
+
+        // Clear previous communes
+        communeSelect.innerHTML =
+            '<option value="">Choose your commune</option>';
+
+        // Disable commune if no wilaya selected
+        if (!selectedWilaya) {
+            communeSelect.disabled = true;
+            return;
+        }
+
+        // Get communes
+        const wilayaCommunes = communes[selectedWilaya] || [];
+
+        // Add communes
+        wilayaCommunes.forEach(function (commune) {
+
+            const option = document.createElement("option");
+
+            option.value = commune;
+            option.textContent = commune;
+
+            communeSelect.appendChild(option);
+
+        });
+
+        // Enable commune dropdown
+        communeSelect.disabled = false;
+
+    });
+
+
+    // Handle form submission
+    document.getElementById("search-form").addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        const service = document.getElementById("service").value;
+        const wilaya = wilayaSelect.value;
+        const commune = communeSelect.value;
+
+        if (!wilaya || !commune) {
+            alert("Please select your Wilaya and Commune.");
+            return;
+        }
+
+        alert(
+            "Searching for: " + service +
+            "\nWilaya: " + wilaya +
+            "\nCommune: " + commune
+        );
+
+    });
+
+</script>
+
 </html>
