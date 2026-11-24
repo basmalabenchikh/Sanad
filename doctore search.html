@@ -1,0 +1,849 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sanad | Doctor Home Visit</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= GENERAL ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background: #ffffff;
+    color: #102d5c;
+    line-height: 1.6;
+}
+
+:root {
+    --navy: #102d5c;
+    --blue: #1554c9;
+    --muted: #7185a5;
+    --background: #f3f6fc;
+}
+
+.container {
+    max-width: 1100px;
+    width: calc(100% - 64px);
+    margin: auto;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+    width: 100%;
+    height: 76px;
+    background: #ffffff;
+    border-bottom: 1px solid #e8edf5;
+    position: relative;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 max(32px, calc((100% - 1120px) / 2));
+}
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #1557bd;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+}
+
+/* NAVIGATION */
+
+.header nav {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+.header nav a {
+    text-decoration: none;
+    color: #243e68;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.header nav a:hover {
+    color: #1557bd;
+}
+
+/* MOBILE MENU */
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    color: #17345f;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* HEADER RESPONSIVE */
+
+@media (max-width: 850px) {
+
+    .header {
+        height: 76px;
+        padding: 0 20px;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    .header nav {
+        display: none;
+
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+
+        padding: 22px;
+        background: white;
+
+        border-top: 1px solid #edf0f5;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.06);
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .header nav.is-open {
+        display: flex;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .logo img {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+
+/* ================= MAIN CONTENT ================= */
+
+.main {
+    background: var(--background);
+    padding: 75px 60px 65px;
+    min-height: 650px;
+}
+
+.breadcrumb {
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: 36px;
+    color: var(--navy);
+    margin-bottom: 12px;
+    line-height: 1.25;
+}
+
+.subtitle {
+    color: #788ba9;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+
+/* ================= PROGRESS STEPS ================= */
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    max-width: 850px;
+    margin-bottom: 30px;
+    color: var(--blue);
+    font-size: 12px;
+    gap: 15px;
+}
+
+
+/* ================= SECTION CARDS ================= */
+
+.section-card {
+    background: white;
+    border-radius: 17px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.section-card h2 {
+    font-size: 19px;
+    margin-bottom: 22px;
+    color: var(--navy);
+}
+
+
+/* ================= SPECIALTIES ================= */
+
+.specialties {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.specialty {
+    border: 1px solid #e1e8f2;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.specialty:hover {
+    border-color: var(--blue);
+    background: #f5f8ff;
+}
+
+.specialty small,
+.field small {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 7px;
+}
+
+.specialty p,
+.field p {
+    font-size: 13px;
+    color: var(--navy);
+}
+
+
+/* ================= LOCATION ================= */
+
+.location-card {
+    padding: 25px;
+}
+
+.location-fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.field {
+    border: 1px solid #e1e8f2;
+    border-radius: 9px;
+    padding: 15px;
+}
+
+.description {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 20px 0;
+}
+
+
+/* ================= BUTTON ================= */
+
+.search-btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.search-btn:hover {
+    background: #103e99;
+    transform: translateY(-1px);
+}
+
+
+/* ================= LOCATION LINKS ================= */
+
+.location-links {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-top: 20px;
+}
+
+.location-links a {
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.location-links a:hover {
+    text-decoration: underline;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer {
+    background: #102e5c;
+    color: white;
+    padding: 45px 60px 25px;
+}
+
+.footer-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-brand h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.footer-brand h2 span {
+    font-size: 27px;
+}
+
+.footer-brand p {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #e1e9f7;
+}
+
+.footer-column h3 {
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.footer-column a {
+    display: block;
+    color: #d3def0;
+    text-decoration: none;
+    font-size: 11px;
+    margin-bottom: 14px;
+}
+
+.footer-column a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    max-width: 1100px;
+    margin: 35px auto 0;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.footer-bottom p {
+    font-size: 10px;
+    color: #c2d0e6;
+}
+
+
+/* ================= RESPONSIVE DESIGN ================= */
+
+@media (max-width: 850px) {
+
+    .container {
+        width: min(100% - 40px, 680px);
+    }
+
+    .main {
+        padding: 45px 20px;
+    }
+
+    .steps {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .specialties {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .location-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        gap: 25px;
+    }
+
+    .footer {
+        padding: 35px 20px;
+    }
+}
+
+@media (max-width: 620px) {
+
+    .container {
+        width: calc(100% - 36px);
+    }
+
+    .main {
+        padding: 38px 18px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .steps {
+        flex-direction: column;
+    }
+
+    .section-card {
+        padding: 20px;
+    }
+
+    .specialties {
+        grid-template-columns: 1fr;
+    }
+
+    .location-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 20px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <a href="Homepage.html" class="logo">
+
+        <img
+            src="image/photo_2026-11-19_10-02-23.jpg"
+            alt="Sanad Logo">
+
+        <span>Sanad</span>
+
+    </a>
+
+
+    <button class="menu-toggle"
+            aria-label="Open navigation"
+            aria-expanded="false">
+
+        ☰
+
+    </button>
+
+
+    <nav>
+
+        <a href="Homepage.html">Home</a>
+
+        <a href="#">Medical Care⌄</a>
+
+        <a href="#">Daily Care⌄</a>
+
+        <a href="#">About Us</a>
+
+        <a href="#">Contact</a>
+
+        <a href="#">Login / Sign Up</a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+<div class="container">
+
+
+    <div class="breadcrumb">
+        DOCTOR HOME VISIT / 01 SELECT SPECIALTY
+    </div>
+
+
+    <h1>The right doctor, closer to home.</h1>
+
+
+    <p class="subtitle">
+        Choose a specialty and tell us where your loved one needs care.
+    </p>
+
+
+
+    <!-- PROGRESS STEPS -->
+
+    <div class="steps">
+
+        <span>01&nbsp; Specialty & location</span>
+
+        <span>02&nbsp; Choose provider</span>
+
+        <span>03&nbsp; Request a visit</span>
+
+    </div>
+
+
+
+    <!-- SPECIALTY CARD -->
+
+    <section class="section-card">
+
+        <h2>1. Which specialist do you need?</h2>
+
+        <div class="specialties">
+
+            <div class="specialty">
+                <small>Specialty</small>
+                <p>General Doctor</p>
+            </div>
+
+            <div class="specialty">
+                <small>Specialty</small>
+                <p>Cardiologist</p>
+            </div>
+
+            <div class="specialty">
+                <small>Specialty</small>
+                <p>Geriatrician</p>
+            </div>
+
+            <div class="specialty">
+                <small>Specialty</small>
+                <p>Neurologist</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- LOCATION CARD -->
+
+    <section class="section-card location-card">
+
+        <h2>2. Where is care needed?</h2>
+
+        <div class="location-fields">
+
+            <div class="field">
+
+                <small>Wilaya *</small>
+
+                <p>Algiers ⌄</p>
+
+            </div>
+
+
+            <div class="field">
+
+                <small>Commune *</small>
+
+                <p>Hydra ⌄</p>
+
+            </div>
+
+
+            <div class="field">
+
+                <small>Full address *</small>
+
+                <p>Rue des Oliviers</p>
+
+            </div>
+
+        </div>
+
+
+        <p class="description">
+
+            Demonstration location: Hydra, Algiers.
+            Select a specialty or search to see nearby sample doctors.
+
+        </p>
+
+
+        <button class="search-btn" type="button">
+
+            Search doctors →
+
+        </button>
+
+
+        <div class="location-links">
+
+            <a href="#">Use Hydra, Algiers →</a>
+
+            <a href="#">Use El Biar, Algiers →</a>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+            <h2><span>+</span> Sanad</h2>
+
+            <p>
+                Care that feels like family.<br>
+                Professional home care, closer to you.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>Care services</h3>
+
+            <a href="#">Medical Care</a>
+
+            <a href="#">Daily Care</a>
+
+            <a href="#">Find a provider</a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>Sanad</h3>
+
+            <a href="#">About Us</a>
+
+            <a href="#">Contact</a>
+
+            <a href="#">My account</a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>Get in touch</h3>
+
+            <a href="mailto:hello@sanad.example">
+                hello@sanad.example
+            </a>
+
+            <a href="tel:+213210000000">
+                +213 (0) 21 00 00 00
+            </a>
+
+            <a href="#">
+                Algiers, Algeria
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2025 Sanad - Care at Home
+            &nbsp; • &nbsp; Demonstration only
+            • Contact details and prices are illustrative.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/* MOBILE MENU */
+
+const menuButton = document.querySelector(".menu-toggle");
+
+const navigation = document.querySelector(".header nav");
+
+
+menuButton.addEventListener("click", () => {
+
+    const isOpen = navigation.classList.toggle("is-open");
+
+    menuButton.setAttribute("aria-expanded", isOpen);
+
+});
+
+
+/* CLOSE MENU AFTER CLICK */
+
+navigation.querySelectorAll("a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navigation.classList.remove("is-open");
+
+        menuButton.setAttribute("aria-expanded", "false");
+
+    });
+
+});
+
+
+/* LOCATION LINKS */
+
+const locationLinks = document.querySelectorAll(".location-links a");
+
+locationLinks.forEach(link => {
+
+    link.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        const address = link.textContent
+            .replace("Use ", "")
+            .replace(" →", "");
+
+        document.querySelector(".description").textContent =
+            "Selected location: " + address + ". Search to see nearby sample doctors.";
+
+    });
+
+});
+
+
+/* SEARCH BUTTON */
+
+document.querySelector(".search-btn").addEventListener("click", () => {
+
+    const selectedSpecialty = document.querySelector(
+        ".specialty.selected p"
+    );
+
+    if (!selectedSpecialty) {
+
+        alert("Please select a medical specialty first.");
+
+        return;
+
+    }
+
+    alert("Searching for " + selectedSpecialty.textContent + "...");
+
+});
+
+
+/* SPECIALTY SELECTION */
+
+document.querySelectorAll(".specialty").forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        document.querySelectorAll(".specialty").forEach(item => {
+
+            item.classList.remove("selected");
+
+            item.style.borderColor = "#e1e8f2";
+            item.style.background = "white";
+
+        });
+
+        card.classList.add("selected");
+
+        card.style.borderColor = "#1554c9";
+        card.style.background = "#f5f8ff";
+
+    });
+
+});
+
+</script>
+
+
+</body>
+</html>
